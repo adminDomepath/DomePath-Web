@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.npm-cache/
+.DS_Store
+
+# Local Product Design review artifacts
+AGENTS.md
+design-qa.md
+local-*.png
+qa-*.png
+revision-*.png
