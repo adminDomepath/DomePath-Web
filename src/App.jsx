@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const apps = [
   { src: "/assets/her2-icon.png", className: "app-icon--her2", label: "A focused health tool in development" },
-  { src: "/assets/domory-icon.png", className: "", label: "A memory and thinking app in development" },
+  { src: "/assets/domory-icon-v2.png", className: "", label: "A memory and thinking app in development" },
   { src: "/assets/cps-icon-layer.png", className: "app-icon--cps", label: "A focused health tool in development" },
   { src: "/assets/coorder-icon-v2.png", className: "", label: "A focused work tool in development" },
 ];
