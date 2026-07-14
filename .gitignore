@@ -6,6 +6,7 @@ dist/
 # Local Product Design review artifacts
 AGENTS.md
 design-qa.md
+.design-qa/
 local-*.png
 qa-*.png
 revision-*.png
