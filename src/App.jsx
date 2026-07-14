@@ -83,52 +83,53 @@ export function App() {
         </header>
 
         <main>
-          <section className="hero-cinematic" id="top">
-            <div className="hero-media" aria-hidden="true">
+          <div className="cinematic-flow">
+            <div className="cinematic-flow__media" aria-hidden="true">
               <img src="/assets/domepath-path-hero.png" alt="" />
             </div>
-            <div className="hero-shade" aria-hidden="true" />
 
-            <p className="hero-side hero-side--left">Focused software, thoughtfully made</p>
-            <p className="hero-side hero-side--right">Independent app studio</p>
+            <section className="hero-cinematic" id="top">
+              <div className="hero-shade" aria-hidden="true" />
 
-            <div className="hero-title" aria-label="Clearer Paths">
-              <span>Clearer</span>
-              <span>Paths</span>
-            </div>
+              <p className="hero-side hero-side--left">Focused software, thoughtfully made</p>
+              <p className="hero-side hero-side--right">Independent app studio</p>
 
-            <div className="hero-orbit" aria-label="DomePath applications">
-              {apps.map((app, index) => (
-                <div className={`orbit-app orbit-app--${index + 1}`} key={app.src}>
-                  <img src={app.src} alt={app.label} />
-                </div>
-              ))}
-              <div className="hero-emblem">
-                <img src="/assets/domepath-mark.png" alt="DomePath" />
-              </div>
-            </div>
-
-            <a className="hero-discover" href="#about">Discover DomePath</a>
-          </section>
-
-          <section className="story-dark" id="about">
-            <div className="story-sticky">
-              <div className="story-media" aria-hidden="true"><img src="/assets/domepath-path-hero.png" alt="" /></div>
-              <div className="story-shade" aria-hidden="true" />
-
-              <div className="story-scene story-scene--intro">
-                <p>We turn useful ideas into focused applications—designed to remove friction, respect people’s time, and make the next step feel obvious.</p>
-                <a href="#apps">Explore the studio</a>
+              <div className="hero-title" aria-label="Clearer Paths">
+                <span>Clearer</span>
+                <span>Paths</span>
               </div>
 
-              <div className="story-scene story-scene--statement">
-                <p>DomePath is an independent brand creating its own family of software for work, health, and everyday thinking.</p>
-                <div className="story-categories" aria-label="Areas of focus">
-                  <span>Health</span><span>Memory</span><span>Focus</span><span>Work</span>
+              <div className="hero-orbit" aria-label="DomePath applications">
+                {apps.map((app, index) => (
+                  <div className={`orbit-app orbit-app--${index + 1}`} key={app.src}>
+                    <img src={app.src} alt={app.label} />
+                  </div>
+                ))}
+                <div className="hero-emblem">
+                  <img src="/assets/domepath-mark.png" alt="DomePath" />
                 </div>
               </div>
-            </div>
-          </section>
+
+            </section>
+
+            <section className="story-dark" id="about">
+              <div className="story-sticky">
+                <div className="story-shade" aria-hidden="true" />
+
+                <div className="story-scene story-scene--intro">
+                  <p>We turn useful ideas into focused applications—designed to remove friction, respect people’s time, and make the next step feel obvious.</p>
+                  <a href="#apps">Explore the studio</a>
+                </div>
+
+                <div className="story-scene story-scene--statement">
+                  <p>DomePath is an independent brand creating its own family of software for work, health, and everyday thinking.</p>
+                  <div className="story-categories" aria-label="Areas of focus">
+                    <span>Health</span><span>Memory</span><span>Focus</span><span>Work</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
 
           <section className="manifesto" id="apps">
             <div className="manifesto-copy" data-reveal>
