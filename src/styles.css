@@ -51,7 +51,7 @@ nav a:hover, nav a:focus-visible { color: white; }
 .closing-media img { width: 100%; height: 100%; object-fit: cover; }
 .hero-shade, .story-shade, .closing-shade { position: absolute; inset: 0; z-index: -2; }
 .hero-shade, .story-shade { background: transparent; }
-.closing-shade { background: rgba(5,38,39,.54); }
+.closing-shade { background: linear-gradient(180deg, #132526 0%, rgba(19,37,38,.97) 14%, rgba(14,38,39,.88) 32%, rgba(10,38,39,.74) 54%, rgba(7,38,39,.62) 76%, rgba(5,38,39,.54) 100%); }
 .hero-title { position: absolute; z-index: 2; top: 18%; left: 4%; right: 4%; display: flex; justify-content: space-between; align-items: center; gap: 3vw; color: rgba(255,255,255,.91); font-size: clamp(76px, 11.7vw, 184px); line-height: .84; letter-spacing: -.09em; font-weight: 500; white-space: nowrap; transform: translateY(calc(var(--hero-progress) * -38px)); }
 .hero-title span:last-child { text-align: right; }
 .hero-side { position: absolute; z-index: 3; top: 40%; width: 25%; margin: 0; color: rgba(255,255,255,.88); font-size: clamp(12px, 1.15vw, 17px); line-height: 1.45; text-shadow: 0 2px 18px rgba(0,0,0,.18); opacity: clamp(0, calc(1 - var(--hero-progress) * 1.7), 1); }
@@ -109,7 +109,7 @@ nav a:hover, nav a:focus-visible { color: white; }
 .studio-seal img { width: 78px; height: 78px; object-fit: contain; }
 
 .closing { position: relative; min-height: 820px; display: grid; place-items: center; color: white; text-align: center; isolation: isolate; overflow: hidden; }
-.closing::before { content: ""; position: absolute; z-index: 0; inset: 0 0 auto; height: 190px; pointer-events: none; background: linear-gradient(180deg, #132526, rgba(19,37,38,0)); }
+.closing::before { display: none; }
 .closing-media img { transform: scale(1.06); filter: saturate(.8); }
 .closing-content { position: relative; z-index: 1; width: min(900px, calc(100% - 48px)); }
 .closing-brand { margin-bottom: 48px; display: inline-flex; align-items: center; gap: 11px; font-family: "Nunito", sans-serif; font-size: 17px; font-weight: 800; }
