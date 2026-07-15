@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const apps = [
-  { src: "/assets/her2-icon.png", label: "A focused health tool in development" },
+  { src: "/assets/her2-icon-transparent-v3.png", label: "A focused health tool in development" },
   { src: "/assets/domory-icon-v3.png", label: "A memory and thinking app in development" },
   { src: "/assets/cps-icon-layer.png", label: "A focused health tool in development" },
   { src: "/assets/coorder-icon-v2.png", label: "A focused work tool in development" },
