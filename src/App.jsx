@@ -85,7 +85,7 @@ export function App() {
         <main>
           <div className="cinematic-flow">
             <div className="cinematic-flow__media" aria-hidden="true">
-              <img src="/assets/domepath-path-hero.png" alt="" />
+              <img src="/assets/domepath-path-natural-v2.png" alt="" />
             </div>
 
             <section className="hero-cinematic" id="top">
@@ -148,7 +148,6 @@ export function App() {
               ))}
               <div className="studio-seal">
                 <img src="/assets/domepath-mark.png" alt="" />
-                <span>One studio<br />Four directions</span>
               </div>
             </div>
           </section>
@@ -172,7 +171,7 @@ export function App() {
           </section>
 
           <section className="closing" id="contact">
-            <div className="closing-media" aria-hidden="true"><img src="/assets/domepath-path-hero.png" alt="" /></div>
+            <div className="closing-media" aria-hidden="true"><img src="/assets/domepath-path-natural-v2.png" alt="" /></div>
             <div className="closing-shade" aria-hidden="true" />
             <div className="closing-content" data-reveal>
               <div className="closing-brand"><span className="brand-mark"><img src="/assets/domepath-mark.png" alt="" /></span> DomePath</div>
