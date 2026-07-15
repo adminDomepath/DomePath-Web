@@ -131,7 +131,6 @@ export function App() {
             </div>
 
             <div className="app-constellation" data-reveal>
-              <div className="constellation-line" aria-hidden="true" />
               {apps.map((app, index) => (
                 <article className={`app-object app-object--${index + 1}`} key={`showcase-${app.src}`}>
                   <div className="app-object__halo" />

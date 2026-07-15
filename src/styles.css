@@ -91,7 +91,6 @@ nav a:hover, nav a:focus-visible { color: white; }
 .manifesto h2 { color: #f3f5ef; }
 .manifesto h2 span { color: rgba(207,221,214,.58); }
 .app-constellation { position: relative; max-width: 1240px; height: 570px; margin: 110px auto 0; }
-.constellation-line { position: absolute; left: 10%; right: 10%; top: 50%; height: 1px; background: rgba(255,255,255,.13); }
 .app-object { --app-object-size: clamp(104px, 11vw, 164px); position: absolute; width: var(--app-object-size); }
 .app-object img { position: relative; z-index: 2; width: var(--app-object-size); height: var(--app-object-size); object-fit: contain; filter: drop-shadow(0 24px 28px rgba(2,12,12,.38)); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
 .app-object:hover img { transform: translateY(-14px) scale(1.05) rotate(0deg); }
@@ -192,7 +191,6 @@ footer p:last-child { justify-self: end; }
   .app-object--4 { right: 1%; bottom: 2%; }
   .studio-seal { width: 150px; height: 150px; padding: 25px; }
   .studio-seal img { width: 66px; height: 66px; }
-  .constellation-line { left: 50%; right: auto; top: 5%; bottom: 5%; width: 1px; height: auto; }
   .closing { min-height: 720px; }
   .closing h2 { font-size: clamp(50px, 14vw, 70px); }
   .closing p { font-size: 14px; }
