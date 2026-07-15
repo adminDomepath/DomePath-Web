@@ -7,13 +7,6 @@ const apps = [
   { src: "/assets/coorder-icon-v2.png", label: "A focused work tool in development" },
 ];
 
-const principles = [
-  { label: "Our products", value: "Own ideas" },
-  { label: "Our scale", value: "Human" },
-  { label: "Our standard", value: "Clear" },
-  { label: "Our approach", value: "Intentional" },
-];
-
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -77,7 +70,6 @@ export function App() {
           <nav id="primary-navigation" className={menuOpen ? "nav-open" : ""} aria-label="Primary navigation">
             <a href="#about" onClick={closeMenu}>Studio</a>
             <a href="#apps" onClick={closeMenu}>Apps</a>
-            <a href="#approach" onClick={closeMenu}>Approach</a>
             <a className="nav-contact" href="#contact" onClick={closeMenu}>Get in touch</a>
           </nav>
         </header>
@@ -150,24 +142,6 @@ export function App() {
               <div className="studio-seal">
                 <img src="/assets/domepath-mark.png" alt="" />
               </div>
-            </div>
-          </section>
-
-          <section className="approach" id="approach">
-            <div className="approach-heading" data-reveal>
-              <p className="section-kicker">What stays constant</p>
-              <h2>Built around a<br />quiet standard.</h2>
-              <p>Different products, one shared belief: useful technology should feel lighter, calmer, and more direct.</p>
-            </div>
-
-            <div className="principle-grid" data-reveal>
-              {principles.map((principle, index) => (
-                <article key={principle.label}>
-                  <span>0{index + 1}</span>
-                  <h3>{principle.value}</h3>
-                  <p>{principle.label}</p>
-                </article>
-              ))}
             </div>
           </section>
 
