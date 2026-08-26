@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const apps = [
   { src: "/assets/her2-icon-transparent-v3.png", label: "A focused health tool in development" },
@@ -10,16 +10,31 @@ const apps = [
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     let frame = 0;
+    const video = videoRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const updateScroll = () => {
       frame = 0;
       const heroProgress = Math.min(Math.max(window.scrollY / Math.max(window.innerHeight, 1), 0), 1);
+      const main = document.querySelector("main");
+      const mainTop = main ? main.getBoundingClientRect().top + window.scrollY : 0;
+      const mainRange = Math.max((main?.offsetHeight ?? window.innerHeight) - window.innerHeight, 1);
+      const filmProgress = Math.min(Math.max((window.scrollY - mainTop) / mainRange, 0), 1);
       document.documentElement.style.setProperty("--hero-progress", heroProgress.toFixed(4));
+      document.documentElement.style.setProperty("--film-progress", filmProgress.toFixed(4));
       setScrolled(window.scrollY > 32);
 
+      if (video?.duration && Number.isFinite(video.duration)) {
+        const targetTime = reducedMotion.matches
+          ? video.duration * 0.72
+          : Math.min(video.duration - 0.02, video.duration * filmProgress);
+
+        if (Math.abs(video.currentTime - targetTime) > 0.016) video.currentTime = targetTime;
+      }
     };
 
     const onScroll = () => {
@@ -38,6 +53,8 @@ export function App() {
 
     document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
     updateScroll();
+    video?.addEventListener("loadedmetadata", updateScroll);
+    reducedMotion.addEventListener("change", updateScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -47,6 +64,8 @@ export function App() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       window.removeEventListener("pointermove", onPointerMove);
+      video?.removeEventListener("loadedmetadata", updateScroll);
+      reducedMotion.removeEventListener("change", updateScroll);
       observer.disconnect();
     };
   }, []);
@@ -58,7 +77,7 @@ export function App() {
       <div className="site-frame">
         <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
           <a className="brand" href="#top" aria-label="DomePath home" onClick={closeMenu}>
-            <span className="brand-mark"><img src="/assets/domepath-mark.png" alt="" /></span>
+            <span className="brand-mark"><img src="/assets/domepath-mark-blue.png" alt="" /></span>
             <span>DomePath</span>
           </a>
 
@@ -75,11 +94,16 @@ export function App() {
         </header>
 
         <main>
-          <div className="cinematic-flow">
-            <div className="cinematic-flow__media" aria-hidden="true">
-              <img src="/assets/domepath-path-illustrated-v3.png" alt="" />
+          <div className="page-video" aria-hidden="true">
+            <div className="page-video__sticky">
+              <video ref={videoRef} muted playsInline preload="auto" poster="/assets/domepath-scroll-poster.webp" tabIndex={-1}>
+                <source src="/assets/domepath-scroll.webm" type="video/webm" />
+                <source src="/assets/domepath-scroll.mp4" type="video/mp4" />
+              </video>
             </div>
+          </div>
 
+          <div className="cinematic-flow">
             <section className="hero-cinematic" id="top">
               <div className="hero-shade" aria-hidden="true" />
 
@@ -91,10 +115,6 @@ export function App() {
                 <span>Paths</span>
               </div>
 
-              <div className="hero-emblem">
-                <img src="/assets/domepath-mark.png" alt="DomePath" />
-              </div>
-
               <div className="hero-app-row" aria-label="DomePath applications">
                 {apps.map((app, index) => (
                   <div className={`hero-app hero-app--${index + 1}`} key={app.src}>
@@ -102,6 +122,8 @@ export function App() {
                   </div>
                 ))}
               </div>
+
+              <p className="hero-scroll-cue"><span /> Scroll to shape the path</p>
 
             </section>
 
@@ -139,16 +161,15 @@ export function App() {
                 </article>
               ))}
               <div className="studio-seal">
-                <img src="/assets/domepath-mark.png" alt="" />
+                <img src="/assets/domepath-mark-blue.png" alt="" />
               </div>
             </div>
           </section>
 
           <section className="closing" id="contact">
-            <div className="closing-media" aria-hidden="true"><img src="/assets/domepath-path-illustrated-v3.png" alt="" /></div>
             <div className="closing-shade" aria-hidden="true" />
             <div className="closing-content" data-reveal>
-              <div className="closing-brand"><span className="brand-mark"><img src="/assets/domepath-mark.png" alt="" /></span> DomePath</div>
+              <div className="closing-brand"><span className="brand-mark"><img src="/assets/domepath-mark-blue.png" alt="" /></span> DomePath</div>
               <h2>Something worth<br />making clearer?</h2>
               <p>For product questions, support, or thoughtful collaboration, we would be glad to hear from you.</p>
               <a href="mailto:leonardo.arias@domepath.com">leonardo.arias@domepath.com</a>
@@ -157,7 +178,7 @@ export function App() {
         </main>
 
         <footer>
-          <a className="footer-brand" href="#top"><span className="brand-mark"><img src="/assets/domepath-mark.png" alt="" /></span><span>DomePath</span></a>
+          <a className="footer-brand" href="#top"><span className="brand-mark"><img src="/assets/domepath-mark-blue.png" alt="" /></span><span>DomePath</span></a>
           <p>Focused software, thoughtfully made.</p>
           <p>© {new Date().getFullYear()}</p>
         </footer>
