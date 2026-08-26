@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const apps = [
-  { src: "/assets/her2-icon-transparent-v3.png", label: "A focused health tool in development" },
-  { src: "/assets/domory-icon-v3.png", label: "A memory and thinking app in development" },
-  { src: "/assets/cps-icon-layer.png", label: "A focused health tool in development" },
-  { src: "/assets/coorder-icon-v2.png", label: "A focused work tool in development" },
+  { src: "/assets/her2-icon-transparent-v3.png", normalizedSrc: "/assets/her2-icon-normalized-v1.png", label: "A focused health tool in development" },
+  { src: "/assets/domory-icon-v3.png", normalizedSrc: "/assets/domory-icon-normalized-v1.png", label: "A memory and thinking app in development" },
+  { src: "/assets/cps-icon-layer.png", normalizedSrc: "/assets/cps-icon-normalized-v1.png", label: "A focused health tool in development" },
+  { src: "/assets/coorder-icon-v2.png", normalizedSrc: "/assets/coorder-icon-normalized-v1.png", label: "A focused work tool in development" },
 ];
 
 export function App() {
@@ -105,6 +105,9 @@ export function App() {
 
           <div className="cinematic-flow">
             <section className="hero-cinematic" id="top">
+              <div className="hero-illustration" aria-hidden="true">
+                <img src="/assets/domepath-hero-sea-path-v1.webp" alt="" fetchPriority="high" />
+              </div>
               <div className="hero-shade" aria-hidden="true" />
 
               <p className="hero-side hero-side--left">Focused software, thoughtfully made</p>
@@ -156,7 +159,7 @@ export function App() {
               {apps.map((app, index) => (
                 <article className={`app-object app-object--${index + 1}`} key={`showcase-${app.src}`}>
                   <div className="app-object__frame">
-                    <img src={app.src} alt={app.label} />
+                    <img src={app.normalizedSrc} alt={app.label} />
                   </div>
                   <p><span>0{index + 1}</span> In development</p>
                 </article>
