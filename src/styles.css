@@ -93,21 +93,19 @@ main { position: relative; isolation: isolate; background: #061638; }
 .manifesto h2 { color: #f3f6ff; }
 .manifesto h2 span { color: rgba(175,199,249,.66); }
 .app-constellation { position: relative; max-width: 1240px; height: 570px; margin: 110px auto 0; }
-.app-object { --app-object-size: clamp(104px, 11vw, 164px); position: absolute; width: var(--app-object-size); }
-.app-object img { position: relative; z-index: 2; width: var(--app-object-size); height: var(--app-object-size); object-fit: contain; filter: drop-shadow(0 24px 28px rgba(1,8,31,.42)); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
-.app-object:hover img { transform: translateY(-14px) scale(1.05) rotate(0deg); }
+.app-object { --app-object-size: clamp(104px, 11vw, 164px); --app-frame-size: calc(var(--app-object-size) + 28px); position: absolute; width: var(--app-frame-size); }
+.app-object__frame { width: var(--app-frame-size); height: var(--app-frame-size); display: grid; place-items: center; border: 1px solid rgba(190,211,255,.24); border-radius: 50%; background: rgba(222,233,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .25s ease, background .25s ease; }
+.app-object img { width: var(--app-object-size); height: var(--app-object-size); object-fit: contain; }
+.app-object:hover .app-object__frame { border-color: rgba(190,211,255,.42); background: rgba(222,233,255,.15); transform: translateY(-12px); }
 .app-object--1 img { scale: .72; }
 .app-object--2 img { scale: 1.22; }
 .app-object--4 img { scale: 1.08; }
-.app-object__halo { position: absolute; inset: -56%; border-radius: 50%; background: rgba(105,151,255,.3); filter: blur(48px); }
-.app-object p { margin: 20px 0 0; display: flex; gap: 9px; align-items: center; justify-content: center; color: rgba(230,237,232,.58); font-size: 10px; letter-spacing: .11em; text-transform: uppercase; white-space: nowrap; }
+.app-object p { margin: 18px 0 0; display: flex; gap: 9px; align-items: center; justify-content: center; color: rgba(230,237,232,.58); font-size: 10px; letter-spacing: .11em; text-transform: uppercase; white-space: nowrap; }
 .app-object p span { color: rgba(230,237,232,.34); }
 .app-object--1 { left: 1%; top: 10%; transform: rotate(-7deg); }
 .app-object--2 { left: 26%; bottom: 4%; transform: rotate(6deg); }
 .app-object--3 { right: 26%; top: 2%; transform: rotate(7deg); }
 .app-object--4 { right: 1%; bottom: 9%; transform: rotate(-7deg); }
-.studio-seal { position: absolute; left: 50%; top: 50%; width: 178px; height: 178px; padding: 34px; display: grid; place-items: center; border: 1px solid rgba(190,211,255,.22); border-radius: 50%; background: rgba(222,233,255,.12); box-shadow: 0 22px 60px rgba(0,6,28,.28); backdrop-filter: blur(18px); transform: translate(-50%, -50%); }
-.studio-seal img { width: 78px; height: 78px; object-fit: contain; }
 
 .closing { position: relative; z-index: 2; min-height: 820px; display: grid; place-items: center; color: white; text-align: center; isolation: isolate; overflow: hidden; }
 .closing::before { display: none; }
@@ -188,8 +186,6 @@ footer p:last-child { justify-self: end; }
   .app-object--2 { left: auto; right: 1%; bottom: auto; top: 18%; }
   .app-object--3 { right: auto; left: 2%; top: auto; bottom: 19%; }
   .app-object--4 { right: 1%; bottom: 2%; }
-  .studio-seal { width: 150px; height: 150px; padding: 25px; }
-  .studio-seal img { width: 66px; height: 66px; }
   .closing { min-height: 720px; }
   .closing h2 { font-size: clamp(50px, 14vw, 70px); }
   .closing p { font-size: 14px; }

@@ -155,14 +155,12 @@ export function App() {
             <div className="app-constellation" data-reveal>
               {apps.map((app, index) => (
                 <article className={`app-object app-object--${index + 1}`} key={`showcase-${app.src}`}>
-                  <div className="app-object__halo" />
-                  <img src={app.src} alt={app.label} />
+                  <div className="app-object__frame">
+                    <img src={app.src} alt={app.label} />
+                  </div>
                   <p><span>0{index + 1}</span> In development</p>
                 </article>
               ))}
-              <div className="studio-seal">
-                <img src="/assets/domepath-mark-blue.png" alt="" />
-              </div>
             </div>
           </section>
 
