@@ -45,17 +45,15 @@ nav a:hover, nav a:focus-visible { color: white; }
 
 main { position: relative; isolation: isolate; background: #061638; }
 .page-video { position: absolute; z-index: 0; inset: 0; pointer-events: none; }
-.page-video__sticky { position: sticky; top: 0; width: 100%; height: 100svh; overflow: hidden; background: radial-gradient(circle at calc(50% + var(--pointer-x) * 7%) calc(44% + var(--pointer-y) * 5%), rgba(43,80,240,.35), transparent 36%), linear-gradient(145deg, #03102f 0%, #08236a 52%, #061638 100%); }
-.page-video__sticky::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 48%, transparent 12%, rgba(2,10,34,.12) 58%, rgba(2,8,28,.48) 100%), linear-gradient(180deg, rgba(2,12,43,.18), rgba(5,19,57,.42)); }
-.page-video video { width: 100%; height: 100%; object-fit: cover; opacity: .94; transform: scale(1.035); }
+.page-video__sticky { position: sticky; top: 0; width: 100%; height: 100svh; overflow: hidden; isolation: isolate; background: radial-gradient(circle at calc(50% + var(--pointer-x) * 7%) calc(44% + var(--pointer-y) * 5%), rgba(43,80,240,.35), transparent 36%), linear-gradient(145deg, #03102f 0%, #08236a 52%, #061638 100%); }
+.page-video__sticky::after { content: ""; position: absolute; z-index: 2; inset: 0; background: radial-gradient(circle at 50% 48%, transparent 12%, rgba(2,10,34,.12) 58%, rgba(2,8,28,.48) 100%), linear-gradient(180deg, rgba(2,12,43,.18), rgba(5,19,57,.42)); opacity: clamp(0, var(--hero-progress), 1); }
+.page-video__hero-art { position: absolute; z-index: 0; inset: 0; opacity: clamp(0, calc(1 - var(--hero-progress) * 1.15), 1); }
+.page-video__hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+.page-video video { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: .94; transform: scale(1.035); }
 .cinematic-flow { position: relative; z-index: 1; color: white; background: transparent; }
 .cinematic-flow::before { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(3,14,48,.1), rgba(5,20,62,.14) 24%, rgba(7,25,71,.28) 54%, rgba(6,22,61,.5) 84%, rgba(6,20,58,.72)); }
 .cinematic-flow::after { content: ""; position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; height: 320px; pointer-events: none; background: linear-gradient(180deg, rgba(6,20,58,0), rgba(6,20,58,.45) 48%, rgba(6,20,58,.82) 100%); }
-.hero-cinematic { position: relative; z-index: 2; height: calc(100svh - 36px); min-height: 680px; color: var(--deep); background: #edf6fc; isolation: isolate; overflow: hidden; }
-.hero-illustration { position: absolute; z-index: 0; inset: 0; }
-.hero-illustration img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
-.hero-video-overlay { position: absolute; z-index: 1; inset: 0; pointer-events: none; overflow: hidden; }
-.hero-video-overlay video { width: 100%; height: 100%; object-fit: cover; opacity: .9; filter: saturate(1.08) contrast(1.03); transform: scale(1.035); }
+.hero-cinematic { position: relative; z-index: 2; height: calc(100svh - 36px); min-height: 680px; color: var(--deep); background: transparent; isolation: isolate; overflow: hidden; }
 .hero-shade, .story-shade, .closing-shade { position: absolute; inset: 0; }
 .hero-shade { z-index: 2; background: linear-gradient(180deg, rgba(244,249,255,.14), rgba(240,248,255,0) 58%, rgba(6,20,58,.82) 100%); }
 .story-shade { z-index: 0; background: transparent; }
@@ -168,7 +166,6 @@ footer p:last-child { justify-self: end; }
   .nav-contact { margin-top: 5px; text-align: center; color: white; background: var(--deep); }
   .hero-cinematic { height: 100svh; min-height: 690px; }
   .page-video video { object-position: 50% center; }
-  .hero-video-overlay video { object-position: 50% center; }
   .hero-title { top: 21%; left: 20px; right: 20px; display: block; font-size: clamp(69px, 21vw, 92px); line-height: .82; white-space: normal; }
   .hero-title span { display: block; }
   .hero-title span:last-child { text-align: right; }
@@ -201,5 +198,4 @@ footer p:last-child { justify-self: end; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
   .page-video video { transform: scale(1.035); }
-  .hero-video-overlay video { transform: scale(1.035); }
 }

@@ -11,11 +11,10 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const videoRef = useRef(null);
-  const heroVideoRef = useRef(null);
 
   useEffect(() => {
     let frame = 0;
-    const videos = [videoRef.current, heroVideoRef.current].filter(Boolean);
+    const video = videoRef.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const updateScroll = () => {
@@ -29,15 +28,13 @@ export function App() {
       document.documentElement.style.setProperty("--film-progress", filmProgress.toFixed(4));
       setScrolled(window.scrollY > 32);
 
-      videos.forEach((video) => {
-        if (!video.duration || !Number.isFinite(video.duration)) return;
-
+      if (video?.duration && Number.isFinite(video.duration)) {
         const targetTime = reducedMotion.matches
           ? video.duration * 0.72
           : Math.min(video.duration - 0.02, video.duration * filmProgress);
 
         if (Math.abs(video.currentTime - targetTime) > 0.016) video.currentTime = targetTime;
-      });
+      }
     };
 
     const onScroll = () => {
@@ -56,7 +53,7 @@ export function App() {
 
     document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
     updateScroll();
-    videos.forEach((video) => video.addEventListener("loadedmetadata", updateScroll));
+    video?.addEventListener("loadedmetadata", updateScroll);
     reducedMotion.addEventListener("change", updateScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -67,7 +64,7 @@ export function App() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       window.removeEventListener("pointermove", onPointerMove);
-      videos.forEach((video) => video.removeEventListener("loadedmetadata", updateScroll));
+      video?.removeEventListener("loadedmetadata", updateScroll);
       reducedMotion.removeEventListener("change", updateScroll);
       observer.disconnect();
     };
@@ -99,6 +96,9 @@ export function App() {
         <main>
           <div className="page-video" aria-hidden="true">
             <div className="page-video__sticky">
+              <div className="page-video__hero-art">
+                <img src="/assets/domepath-hero-sea-path-v1.webp" alt="" fetchPriority="high" />
+              </div>
               <video ref={videoRef} muted playsInline preload="auto" poster="/assets/domepath-scroll-poster.webp" tabIndex={-1}>
                 <source src="/assets/domepath-scroll.webm" type="video/webm" />
                 <source src="/assets/domepath-scroll.mp4" type="video/mp4" />
@@ -108,14 +108,6 @@ export function App() {
 
           <div className="cinematic-flow">
             <section className="hero-cinematic" id="top">
-              <div className="hero-illustration" aria-hidden="true">
-                <img src="/assets/domepath-hero-sea-path-v1.webp" alt="" fetchPriority="high" />
-              </div>
-              <div className="hero-video-overlay" aria-hidden="true">
-                <video ref={heroVideoRef} muted playsInline preload="auto" tabIndex={-1}>
-                  <source src="/assets/domepath-scroll.webm" type="video/webm" />
-                </video>
-              </div>
               <div className="hero-shade" aria-hidden="true" />
 
               <p className="hero-side hero-side--left">Focused software, thoughtfully made</p>
