@@ -4,7 +4,7 @@ const apps = [
   { src: "/assets/her2-icon-transparent-v3.png", normalizedSrc: "/assets/her2-icon-normalized-v1.png", label: "A focused health tool in development" },
   { src: "/assets/domory-icon-v3.png", normalizedSrc: "/assets/domory-icon-normalized-v1.png", label: "A memory and thinking app in development" },
   { src: "/assets/cps-icon-layer.png", normalizedSrc: "/assets/cps-icon-normalized-v1.png", label: "A focused health tool in development" },
-  { src: "/assets/coorder-icon-v2.png", normalizedSrc: "/assets/coorder-icon-normalized-v1.png", label: "A focused work tool in development" },
+  { src: "/assets/coorder-icon-v2.png", normalizedSrc: "/assets/coorder-icon-normalized-v1.png", label: "Coorder, a focused work tool", href: "https://coorder.domepath.com/" },
 ];
 
 export function App() {
@@ -119,14 +119,16 @@ export function App() {
               </div>
 
               <div className="hero-app-row" aria-label="DomePath applications">
-                {apps.map((app, index) => (
+                {apps.map((app, index) => app.href ? (
+                  <a className={`hero-app hero-app--${index + 1}`} href={app.href} aria-label="Visit Coorder" key={app.src}>
+                    <img src={app.src} alt={app.label} />
+                  </a>
+                ) : (
                   <div className={`hero-app hero-app--${index + 1}`} key={app.src}>
                     <img src={app.src} alt={app.label} />
                   </div>
                 ))}
               </div>
-
-              <p className="hero-scroll-cue"><span /> Scroll to shape the path</p>
 
             </section>
 
@@ -158,9 +160,17 @@ export function App() {
             <div className="app-constellation" data-reveal>
               {apps.map((app, index) => (
                 <article className={`app-object app-object--${index + 1}`} key={`showcase-${app.src}`}>
-                  <div className="app-object__frame">
-                    <img src={app.normalizedSrc} alt={app.label} />
-                  </div>
+                  {app.href ? (
+                    <a className="app-object__link" href={app.href} aria-label="Visit Coorder">
+                      <div className="app-object__frame">
+                        <img src={app.normalizedSrc} alt={app.label} />
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="app-object__frame">
+                      <img src={app.normalizedSrc} alt={app.label} />
+                    </div>
+                  )}
                   <p><span>0{index + 1}</span> In development</p>
                 </article>
               ))}
@@ -179,9 +189,19 @@ export function App() {
         </main>
 
         <footer>
-          <a className="footer-brand" href="#top"><span className="brand-mark"><img src="/assets/domepath-mark-blue.png" alt="" /></span><span>DomePath</span></a>
-          <p>Focused software, thoughtfully made.</p>
-          <p>© {new Date().getFullYear()}</p>
+          <div className="footer-identity">
+            <a className="footer-brand" href="#top"><span className="brand-mark"><img src="/assets/domepath-mark-blue.png" alt="" /></span><span>DomePath</span></a>
+            <p>Independent app studio creating focused software for work, health, and everyday thinking.</p>
+          </div>
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <a href="#about">Studio</a>
+            <a href="#apps">Apps</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div className="footer-meta">
+            <a href="mailto:leonardo.arias@domepath.com">leonardo.arias@domepath.com</a>
+            <p>© {new Date().getFullYear()} DomePath</p>
+          </div>
         </footer>
       </div>
     </div>
